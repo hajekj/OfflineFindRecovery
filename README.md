@@ -105,3 +105,6 @@ None of this would be possible without the incredible work and effort of the fol
 * [YeapGuy's decryptor](https://gist.github.com/YeapGuy/f473de53c2a4e8978bc63217359ca1e4)
 * Martin and Karel - for borrowing me their MacBooks for testing
 * Vlada - for giving me this idea by having his MacBook stolen
+
+## Disclaimer
+This project is not associated with Apple Inc.
