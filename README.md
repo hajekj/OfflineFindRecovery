@@ -25,21 +25,61 @@ First, you need to obtain the keypair which is being used to generate the broadc
     ```bash
     security find-generic-password -l "BeaconStore" -g
     ```
-1. From the output, copy the value of `gena` value (it starts with `0x`):
+1. From the output, copy the value of `gena` value (it starts with `0x`, copy only the part before the quotes on the line, so from the example below the value is `0x0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF`):
     ```
-
+    hajekj@Jan-MacBook-Air bleak % security find-generic-password -l 'BeaconStore' -g
+    keychain: "/Users/hajekj/Library/Keychains/login.keychain-db"
+    version: 512
+    class: "genp"
+    attributes:
+        0x00000007 <blob>="BeaconStore"
+        0x00000008 <blob>=<NULL>
+        "acct"<blob>="BeaconStoreKey"
+        "cdat"<timedate>=0x32303234303231383132313435365A00  "20240218121456Z\000"
+        "crtr"<uint32>=<NULL>
+        "cusi"<sint32>=<NULL>
+        "desc"<blob>=<NULL>
+        "gena"<blob>=0x0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF  "<...>"
+        "icmt"<blob>=<NULL>
+        "invi"<sint32>=<NULL>
+        "mdat"<timedate>=0x32303234303231383132313435365A00  "20240218121456Z\000"
+        "nega"<sint32>=<NULL>
+        "prot"<blob>=<NULL>
+        "scrp"<sint32>=<NULL>
+        "svce"<blob>="BeaconStore"
+        "type"<uint32>=<NULL>
     ```
-1. Download the following [script](TBD) and put the obtained value from above into the variable called `hexKey`. Modify the path to the file in `fileURL` property to match your username and the `baUUID` (which you obtained earlier) of the device you want to track.
+1. Download the following [script](/src/swift/findmy-decryptor.swift) and put the obtained value from above into the variable called `hexKey`. Modify the path to the file in `fileURL` property to match your username and the `baUUID` (which you obtained earlier) of the device you want to track.
 1. Enable the script to be executed via `chmod +x ./airtag_decryptor.swift`
 1. Execute the script via `./airtag_decryptor.swift`
 1. The result should be a file called `decrypted.plist` in the same folder as the script. Try to open the file with your editor, it should be an XML file.
 
 ### 2. Generating the broadcast keys
+Now you need the generate the keypairs which are being actually broadcasted by the device, this is important, so that you can find your device in all the devices around you. The keys are generated since the pairing date to up to 48 hours ahead. If you need keys for the future, you can modify the script, or just run it again.
+
+> Only `KeyType.PRIMARY` is relevant when searching for a MacBook.
+
+1. Download the [script](/src/python/findmy-keygeneration.py) and place it in the same folder like `decrypted.plist` file.
+1. Run the script (it is going to run for couple of minutes and the result will be file called `discovery-keys.csv`)
+    ```bash
+    python3 findmy-keygeneration.py
+    ```
 
 ### 3. Searching for the device
+The last thing to do is to take the keys and load them into the discovery tool, which will search for Bluetooth Low Energy beacons, calculate their key and compare it with the list of keys.
+
+> At the moment, it is necessary to manually modify [FindMy.py's code](https://github.com/malmeloo/FindMy.py/pull/10) until the PR is merged in order for the search to work on MacOS.
+
+1. Download the [script](/src/python/findmy-discover.py) and place it in the same folder like `discovery-keys.csv` file.
+1. Run the script
+    ```bash
+    python3 findmy-discover.py
+    ```
+1. Walk around with the device and observe the pings, the closer you get, the lower [RSSI](https://iotandelectronics.wordpress.com/2016/10/07/how-to-calculate-distance-from-the-rssi-value-of-the-ble-beacon/) (distance displayed is not an indicator of an actual distance).
+1. The script will produce `discovery-output.csv` file containing all the discovered devices around, but the command-line will output only if the targeted device is found
 
 ### BONUS: 4. Location history
-
+> TBD
 
 ## Donations
 If this helped you, please **[consider donating](https://github.com/sponsors/hajekj)** some little money to this effort. We have some plans to make an actual application with UI, so these steps are easier, and will also share some of the funds with authors of the used code.
@@ -49,5 +89,6 @@ None of this would be possible without the incredible work and effort of the fol
 
 * [FindMy.py](https://github.com/malmeloo/FindMy.py)
 * [OpenHaystack's research](https://doi.org/10.2478/popets-2021-0045)
+* [YeapGuy's decryptor](https://gist.github.com/YeapGuy/f473de53c2a4e8978bc63217359ca1e4)
 * Martin and Karel - for borrowing me their MacBooks for testing
 * Vlada - for giving me this idea by having his MacBook stolen
