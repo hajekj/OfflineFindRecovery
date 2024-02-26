@@ -87,7 +87,31 @@ The last thing to do is to take the keys and load them into the discovery tool, 
 Go to the last location of your device from Find My map. The sooner the better, the Bluetooth Low Energy broadcast works when your device is not connected to the internet, but it also drains battery. Start walking around slowly. From our tests, the beacon can be picked up every 2 seconds up to 5 minutes, depending on your distance and the surrounding area. Once you pick up the beacon's signal, try to find a bearing by walking around and comparing signal strength. The lower the RSSI, the closer you are. Remember that the signal can bounce around objects etc.
 
 ### BONUS: 4. Location history
-> TBD
+You can retrieve up to 7 days of location history via Offline Find. This is useful if you want to figure out where was the device moving. This is an advanced thing process, so do this only when you are confident with your technical skills.
+
+> This tutorial is dependent on running `findmy` library [version with support for MFA](https://github.com/malmeloo/FindMy.py/pull/9)
+
+1. Install [Docker](https://www.docker.com/products/docker-desktop/)
+1. Run [Anisette server](https://github.com/Dadoum/anisette-v3-server) image
+    ```bash
+    docker run -d --restart always --name anisette-v3 -p 6969:6969 dadoum/anisette-v3-server
+    ```
+1. Download this [script](/src/python/findmy-historicallocations.py)
+1. Fill out `ACCOUNT_EMAIL` and `ACCOUNT_PASS` variables with your Apple ID
+    > You can just use any Apple ID, since the Offline Find data is not tied to any specific ID (due to the privacy provided by public key and encryption)
+1. Filter out the `discovery-keys.csv` to include only keys for the time you want to retrieve the location history for
+1. The script will produce `location_history.json` file, which can then be loaded to Excel (`Data` > `Get Data` > `From File` > `From JSON`)
+1. Once you load the JSON to Excel, you will get following columns:
+    * `time` - the time the device was detected
+        * Use the following formula to convert it to proper date time field ([source](https://stackoverflow.com/questions/4896116/parsing-an-iso8601-date-time-including-timezone-in-excel)):
+            ```
+            =DATEVALUE(MID(A2,1,10))+TIMEVALUE(MID(A2,12,5))+(IF(MID(A2,17,1)="+",-1,1)*IFERROR(TIMEVALUE(MID(D2,18,5)),0))
+            ```
+    * `lat`, `lon` - latitude and longitude
+    * `published_at` - when the data was uploaded to Find My network, please note that the data is usually delayed by ~30 minutes, but it can be much longer
+    * `confidence` - no idea what this actually means, but probably based on RSSI, and seems like the higher the number, the closer the finder device was
+    * `key` - public key at the time of finding
+1. You can then create the [3D Map](https://support.microsoft.com/en-gb/office/get-started-with-3d-maps-6b56a50d-3c3e-4a9e-a527-eea62a387030) from the coordinates, confidence and time, to get an actual movement timeline
 
 ## Donations
 If this helped you, please **[consider donating](https://github.com/sponsors/hajekj)** some little money to this effort. We have some plans to make an actual application with UI, so these steps are easier, and will also share some of the funds with authors of the used code.
