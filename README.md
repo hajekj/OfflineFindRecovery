@@ -5,6 +5,7 @@
 ## Prerequisites
 * Access to your Apple ID
 * MacBook or Hackintosh
+    > You don't need a MacBook for the actual search (any Linux with Bluetooth will do, or Windows should work too), but you need MacOS to perform step 1 in the steps below
     * `/usr/bin/swift` installed
     * Python 3 installed with PIP
     * VS Code or any other editor you prefer
