@@ -119,7 +119,7 @@ You can retrieve up to 7 days of location history via Offline Find. This is usef
 If this helped you, please **[consider donating](https://github.com/sponsors/hajekj)** some little money to this effort. We have some plans to make an actual application with UI, so these steps are easier, and will also share some of the funds with authors of the used code.
 
 ## Support
-This project is released as free and open source. If you need any help, feel free to [reach out privately](https://github.com/hajekj), will do my best to help. You can use [issues](/issues) to submit bugs or discuss the future of this.
+This project is released as free and open source. If you need any help, feel free to [reach out privately](https://github.com/hajekj), will do my best to help. You can use [issues](https://github.com/hajekj/OfflineFindRecovery/issues) to submit bugs or discuss the future of this.
 
 ## Future
 I would like to turn this code into an actual end-to-end application, so anyone can easily (except for pulling the beacon keys) search for their lost device.
