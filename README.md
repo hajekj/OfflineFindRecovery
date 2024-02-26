@@ -9,7 +9,7 @@
     * Python 3 installed with PIP
     * VS Code or any other editor you prefer
 * A little bit of technical skills
-* Lost MacBook showing up in iCloud's Find My as offline, but location being updated from time to time via [Offline Find](https://support.apple.com/en-gb/guide/security/sece994d0126/web)
+* Lost MacBook (or other Apple device) showing up in iCloud's Find My as offline, but location being updated from time to time via [Offline Find](https://support.apple.com/en-gb/guide/security/sece994d0126/web)
 
 ## Steps
 
@@ -131,5 +131,9 @@ None of this would be possible without the incredible work and effort of the fol
 * Martin and Karel - for letting me borrow their MacBooks for testing
 * Vlada - for giving me this idea by having his MacBook stolen
 
-## Disclaimer
-This project is not associated with Apple Inc.
+## Disclaimers
+### Open Source
+All of this code is released as open source under [LICENSE](/LICENSE). It is always a bad practice to run unknown code (especially this kind of code) on your machine, unless you know what you are doing (invite your technical friend to help you, or [reach out](#support)). This project is not collecting any information or sharing it with anyone.
+
+### Apple
+This project is not in any way associated with Apple Inc.
