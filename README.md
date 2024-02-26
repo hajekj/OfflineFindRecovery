@@ -6,7 +6,7 @@
 * Access to your Apple ID
 * MacBook or Hackintosh
     * `/usr/bin/swift` installed
-    * Python 3 installed
+    * Python 3 installed with PIP
     * VS Code or any other editor you prefer
 * A little bit of technical skills
 
@@ -60,6 +60,10 @@ Now you need the generate the keypairs which are being actually broadcasted by t
 > Only `KeyType.PRIMARY` is relevant when searching for a MacBook.
 
 1. Download the [script](/src/python/findmy-keygeneration.py) and place it in the same folder like `decrypted.plist` file.
+1. In the same folder install [FindMy.py](https://github.com/malmeloo/FindMy.py) via:
+    ```bash
+    pip3 install findmy
+    ```
 1. Run the script (it is going to run for couple of minutes and the result will be file called `discovery-keys.csv`)
     ```bash
     python3 findmy-keygeneration.py
@@ -78,17 +82,26 @@ The last thing to do is to take the keys and load them into the discovery tool, 
 1. Walk around with the device and observe the pings, the closer you get, the lower [RSSI](https://iotandelectronics.wordpress.com/2016/10/07/how-to-calculate-distance-from-the-rssi-value-of-the-ble-beacon/) (distance displayed is not an indicator of an actual distance).
 1. The script will produce `discovery-output.csv` file containing all the discovered devices around, but the command-line will output only if the targeted device is found
 
+#### Actual search
+Go to the last location of your device from Find My map. The sooner the better, the Bluetooth Low Energy broadcast works when your device is not connected to the internet, but it also drains battery. Start walking around slowly. From our tests, the beacon can be picked up every 2 seconds up to 5 minutes, depending on your distance and the surrounding area. Once you pick up the beacon's signal, try to find a bearing by walking around and comparing signal strength. The lower the RSSI, the closer you are. Remember that the signal can bounce around objects etc.
+
 ### BONUS: 4. Location history
 > TBD
 
 ## Donations
 If this helped you, please **[consider donating](https://github.com/sponsors/hajekj)** some little money to this effort. We have some plans to make an actual application with UI, so these steps are easier, and will also share some of the funds with authors of the used code.
 
+## Support
+This project is released as free and open source. If you need any help, feel free to [reach out](https://github.com/hajekj), will do my best to help.
+
+## Future
+I would like to turn this code into an actual end-to-end application, so anyone can easily (except for pulling the beacon keys) search for their lost device.
+
 ## Credits
 None of this would be possible without the incredible work and effort of the following:
 
-* [FindMy.py](https://github.com/malmeloo/FindMy.py)
 * [OpenHaystack's research](https://doi.org/10.2478/popets-2021-0045)
+* [FindMy.py](https://github.com/malmeloo/FindMy.py)
 * [YeapGuy's decryptor](https://gist.github.com/YeapGuy/f473de53c2a4e8978bc63217359ca1e4)
 * Martin and Karel - for borrowing me their MacBooks for testing
 * Vlada - for giving me this idea by having his MacBook stolen
