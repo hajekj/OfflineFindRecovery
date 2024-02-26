@@ -1,6 +1,6 @@
 # Precisely locate your lost MacBook via Offline Find
 
-[Read the original story](TBD)
+[Read the original story](https://hajekj.net/2024/02/26/searching-for-a-lost-macbook/)
 
 ## Prerequisites
 * Access to your Apple ID
