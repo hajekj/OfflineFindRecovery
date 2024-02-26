@@ -9,6 +9,7 @@
     * Python 3 installed with PIP
     * VS Code or any other editor you prefer
 * A little bit of technical skills
+* Lost MacBook showing up in iCloud's Find My as offline, but location being updated from time to time via [Offline Find](https://support.apple.com/en-gb/guide/security/sece994d0126/web)
 
 ## Steps
 
