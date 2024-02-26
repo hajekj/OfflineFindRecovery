@@ -84,7 +84,9 @@ The last thing to do is to take the keys and load them into the discovery tool, 
 1. The script will produce `discovery-output.csv` file containing all the discovered devices around, but the command-line will output only if the targeted device is found
 
 #### Actual search
-Go to the last location of your device from Find My map. The sooner the better, the Bluetooth Low Energy broadcast works when your device is not connected to the internet, but it also drains battery. Start walking around slowly. From our tests, the beacon can be picked up every 2 seconds up to 5 minutes, depending on your distance and the surrounding area. Once you pick up the beacon's signal, try to find a bearing by walking around and comparing signal strength. The lower the RSSI, the closer you are. Remember that the signal can bounce around objects etc.
+Go to the last location of your device from Find My map. The sooner the better, the Bluetooth Low Energy broadcast works when your device is not connected to the internet, but it also drains battery. Start walking around slowly. From our tests, the beacon can be picked up every 2 seconds up to 5 minutes, depending on your distance and the surrounding area. Once you pick up the beacon's signal, try to find a bearing by walking around and comparing signal strength. The lower the RSSI, the closer you are. Remember that the signal can bounce around objects etc. The strength and reception varies - for example, I can pick up the signal one floor below, but not from the outside etc. It certainly takes time to locate the device.
+
+You could also create a heatmap from the data with a little bit of effort and Excel spreadsheet from the CSV data outputted.
 
 ### BONUS: 4. Location history
 You can retrieve up to 7 days of location history via Offline Find. This is useful if you want to figure out where was the device moving. This is an advanced thing process, so do this only when you are confident with your technical skills.
@@ -117,7 +119,7 @@ You can retrieve up to 7 days of location history via Offline Find. This is usef
 If this helped you, please **[consider donating](https://github.com/sponsors/hajekj)** some little money to this effort. We have some plans to make an actual application with UI, so these steps are easier, and will also share some of the funds with authors of the used code.
 
 ## Support
-This project is released as free and open source. If you need any help, feel free to [reach out](https://github.com/hajekj), will do my best to help.
+This project is released as free and open source. If you need any help, feel free to [reach out privately](https://github.com/hajekj), will do my best to help. You can use [issues](/issues) to submit bugs or discuss the future of this.
 
 ## Future
 I would like to turn this code into an actual end-to-end application, so anyone can easily (except for pulling the beacon keys) search for their lost device.
