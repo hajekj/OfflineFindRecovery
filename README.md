@@ -74,7 +74,7 @@ Now you need the generate the keypairs which are being actually broadcasted by t
 ### 3. Searching for the device
 The last thing to do is to take the keys and load them into the discovery tool, which will search for Bluetooth Low Energy beacons, calculate their key and compare it with the list of keys.
 
-> At the moment, it is necessary to manually modify [FindMy.py's code](https://github.com/malmeloo/FindMy.py/pull/10) until the PR is merged in order for the search to work on MacOS.
+> At the moment, it is necessary to manually modify [FindMy.py's code](https://github.com/malmeloo/FindMy.py/pull/10) until the PR is merged in order for the search to work on MacOS. (**Update:** PR has been merged, but [no release](https://pypi.org/project/FindMy/) has been made yet.)
 
 1. Download the [script](/src/python/findmy-discover.py) and place it in the same folder like `discovery-keys.csv` file.
 1. Run the script
